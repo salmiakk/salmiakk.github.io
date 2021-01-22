@@ -115,7 +115,6 @@ function initPieceMove(field){
         // if clicked again on the same piece
         if (movingFieldId == field.attr('id')){
             var possibleMoves = findMoves(field);
-            console.log("szukalem wczesniej");
             console.log(field.attr("fieldColor"));
             removeFieldBackgroundAfterMove($(field), possibleMoves);
             return;
@@ -140,7 +139,6 @@ function initPieceMove(field){
         }
     }else{
         var possibleMoves = findMoves(field);
-        console.log("nie szukałem ruchow wczesniej");
         console.log($(field).attr("fieldColor"));
         $(field).css("background","rgba(102, 193, 92, 1)");
         movingFieldId = field.attr('id');
@@ -150,7 +148,6 @@ function initPieceMove(field){
             console.log("#field" + item);
         });
         
-        console.log(" RUCH PIONKA:" + movingFieldId);
     }
 }
 
@@ -263,14 +260,10 @@ $(".piece").click(function(){
 });
 $(".field").click(function(){
     if ($(this).children().length == 0){
-        console.log("Kliknales na pole bez pionka");
         console.log(movingFieldId);
         if (movingFieldId != null){
             var possibleMoves = findMoves($("#" + movingFieldId));
-            console.log("co mozesz: " + possibleMoves);
-            console.log("twoje id: " + $(this).attr("id"));
             if (possibleMoves.includes($(this).attr("id").slice(-2))){
-                console.log("mamy zielen!");
                 movePiece(tryingToMovePiece, $(this));
                 removeFieldBackgroundAfterMove($("#" + movingFieldId), possibleMoves);
                 tryingToMovePiece = null;
